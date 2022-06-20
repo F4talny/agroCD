@@ -18,7 +18,7 @@ spec:
           type: NodePort
         
     repoURL: https://artifacthub.io/packages/helm/ealenn/echo-server
-    targetRevision: 0.4.0
+    targetRevision: 0.3.1
   syncPolicy:
     automated:
       prune: true
