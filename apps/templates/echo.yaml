@@ -1,25 +1,25 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: echo-server
-  namespace: default
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
-spec:
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: default
-  project: default
-  source:
-    chart: echo-server
-    helm:
-      values: |
-        service:
-          type: NodePort
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: echo-server
+#   namespace: default
+#   finalizers:
+#   - resources-finalizer.argocd.argoproj.io
+# spec:
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: default
+#   project: default
+#   source:
+#     chart: echo-server
+#     helm:
+#       values: |
+#         service:
+#           type: NodePort
         
-    repoURL: https://artifacthub.io/packages/helm/ealenn/echo-server
-    targetRevision: 0.4.0
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+#     repoURL: https://artifacthub.io/packages/helm/ealenn/echo-server
+#     targetRevision: 0.4.0
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
