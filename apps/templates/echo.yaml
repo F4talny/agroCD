@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
+  name: echo-server
   namespace: default
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -11,13 +11,14 @@ spec:
     namespace: default
   project: default
   source:
-    chart: prometheus
+    chart: ealenn/echo-server
     helm:
       values: |
-        pushgateway:
-          enabled: false
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 15.6.0
+        service:
+          type: NodePort
+        
+    repoURL: https://artifacthub.io/packages/helm/ealenn/echo-server
+    targetRevision: 0.4.0
   syncPolicy:
     automated:
       prune: true
