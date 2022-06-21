@@ -15,9 +15,12 @@ A connection to the cluster, either from the developers laptop or from a CI/CD s
 
 #### Before we install the chart we need to generate a Chart.lock file:
 
-- helm repo add argo-cd https://argoproj.github.io/argo-helm
-- helm dep update charts/argo-cd/
-
+```
+helm repo add argo-cd https://argoproj.github.io/argo-helm
+```
+```
+helm dep update charts/argo-cd/
+```
 
 #### This will generate two files:
 
@@ -28,28 +31,37 @@ The tgz file is the downloaded dependency and not required in our Git repository
 
 We exclude it by creating a .gitignore file in the chart directory:
 
-- echo "charts/" > charts/argo-cd/.gitignore
-
+```
+echo "charts/" > charts/argo-cd/.gitignore
+```
 
 ## Installing our Argo CD Helm chart
 
-- helm repo add argo https://argoproj.github.io/argo-helm
-- helm install argo-cd argo/argo-cd
+```
+helm repo add argo https://argoproj.github.io/argo-helm
+```
+```
+helm install argo-cd argo/argo-cd
+```
 
 ## Accessing the Web UI
 The Helm chart doesn’t install an Ingress by default, to access the Web UI we have to port-forward to the argocd-server service:
 
-- kubectl port-forward service/argo-cd-argocd-server -n default 8080:443
-
-- kubectl -n default get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
-
+```
+kubectl port-forward service/argo-cd-argocd-server -n default 8080:443
+```
+```
+kubectl -n default get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+```
 - We can then visit http://localhost:8080 to access it
 
 
 
 ### Deploy ArgoCD 
 
-- helm template apps/ | kubectl apply -f -
+```
+helm template apps/ | kubectl apply -f -
+```
 
 ### Once the Argo CD application is synced it can now manage itself and we can, demonstrate how to deploy a Helm chart with Argo CD, we’ll add Echo-Server to our cluster.
 
