@@ -40,4 +40,24 @@ We exclude it by creating a .gitignore file in the chart directory:
 The Helm chart doesn’t install an Ingress by default, to access the Web UI we have to port-forward to the argocd-server service:
 
 - kubectl port-forward service/argo-cd-argocd-server -n default 8080:443
+
 - kubectl -n default get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+
+- We can then visit http://localhost:8080 to access it
+
+
+
+### Deploy ArgoCD 
+
+- helm template apps/ | kubectl apply -f -
+
+### Once the Argo CD application is synced it can now manage itself and we can, demonstrate how to deploy a Helm chart with Argo CD, we’ll add Echo-Server to our cluster.
+
+- We’re using chart instead of path to install a Helm chart from a different Helm repository
+- The targetRevision is the specific chart version that we want to install
+- The repoURL is set to the ealenn.github.io Helm chart repository
+
+- To deploy the application all we have to do is push the manifest to our Git repository:
+
+
+### Note: Argo CD will not use helm install to install charts. It will render the chart with helm template and then apply the output with kubectl. This means we can’t run helm list on a local machine to get all installed releases.
