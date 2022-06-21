@@ -11,7 +11,7 @@ spec:
     namespace: default
   project: default
   source:
-    chart: ealenn/echo-server    
+    chart: echo-server   
     repoURL: https://ealenn.github.io/charts
     targetRevision: 0.4.0
   syncPolicy:
