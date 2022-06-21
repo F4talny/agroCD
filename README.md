@@ -57,7 +57,7 @@ The Helm chart doesn’t install an Ingress by default, to access the Web UI we 
 - The targetRevision is the specific chart version that we want to install
 - The repoURL is set to the ealenn.github.io Helm chart repository
 
-- To deploy the application all we have to do is push the manifest to our Git repository:
+- To deploy the application all we have to do is uncomment values in /apps/templates/echo.yaml and push the manifest to our Git repository
 
 
 ### Note: Argo CD will not use helm install to install charts. It will render the chart with helm template and then apply the output with kubectl. This means we can’t run helm list on a local machine to get all installed releases.
